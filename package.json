@@ -1,0 +1,40 @@
+{
+  "name": "challenge_alkemy",
+  "version": "1.0.0",
+  "description": "Challenge Fullstack JS | Alkemy ",
+  "main": "index.js",
+  "scripts": {
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "start": "nodemon --exec npm run babel-node index.js",
+    "buildcss": "sass --style=compressed resources/scss/:views/public/css/",
+    "buildjs": "uglifyjs-folder resources/js/ -eo views/public/js/",
+    "buildimg": "copyfiles -u 2 resources/img/*.* views/public/img/",
+    "build": "npm run buildcss & npm run buildjs & npm run buildimg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JefferGonzalez/Challenge_Alkemy"
+  },
+  "keywords": [
+    "mvc",
+    "node"
+  ],
+  "author": "Jefferson David Gonzalez Cely",
+  "bugs": {
+    "url": "https://github.com/JefferGonzalez/Challenge_Alkemy/issues"
+  },
+  "homepage": "https://github.com/JefferGonzalez/Xue-PHP",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "promise-mysql": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
