@@ -23,8 +23,9 @@
   "bugs": {
     "url": "https://github.com/JefferGonzalez/Challenge_Alkemy/issues"
   },
-  "homepage": "https://github.com/JefferGonzalez/Challenge_Alkemy",
   "dependencies": {
+    "cors": "^2.8.5",
+    "date-fns": "^2.28.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "promise-mysql": "^5.2.0"
