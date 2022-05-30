@@ -1,9 +1,11 @@
 import {getConnection} from "../Database/Connection";
+import { format } from 'date-fns';
 
 const getAll = async (request,response) => {
     try {
+        const { email } = request.params; 
         const connection = await getConnection(); 
-        const result = await connection.query('SELECT * FROM operation');
+        const result = await connection.query('SELECT * FROM operation WHERE user_email = ?' , email );
         response.json(result);
     } catch (error) {
         response.status(500);
@@ -13,11 +15,12 @@ const getAll = async (request,response) => {
 
 const addOperation = async (request,response) => {
     try {
-        const { concept, amount, date, type } = request.body;
-        if(concept === undefined || amount === undefined || date === undefined || type === undefined){
+        var { concept, amount, date, type, category_id , user_email } = request.body;
+        if(concept === '' || amount === '' || date === '' || type === '' || category_id === ''){
             response.status(400).json({message: "Bad Request. Please fill all fields."})
         }
-        const operation = { concept, amount, date, type };
+        date = format(new Date(date), 'yyyy-MM-dd');
+        const operation = { concept, amount, date, type, category_id , user_email };
         const connection = await getConnection(); 
         const result = await connection.query('INSERT INTO operation SET ?', operation);
         response.json({message: `Number of rows affected: ${result.affectedRows}`});
@@ -45,11 +48,12 @@ const searchForId = async (request,response) => {
 const updateOperation = async (request,response) => {
     try {
         const { id } = request.params; 
-        const {concept, amount, date, type } = request.body;
-        if(id === undefined ||  concept === undefined || amount === undefined || date === undefined || type === undefined){
+        var { concept, amount, date, type, category_id , user_email } = request.body;
+        if(id === '' ||  concept === '' || amount === '' || date === '' || type === '' || category_id === ''){
             response.status(400).json({message: "Bad Request. Please fill all fields."})
         }
-        const operation = {concept, amount, date, type };
+        date = format(new Date(date), 'yyyy-MM-dd');
+        const operation = { concept, amount, date, type, category_id , user_email };
         const connection = await getConnection(); 
         const result = await connection.query('UPDATE operation SET ? WHERE id = ?', [operation,id] );
         response.json({message: `Number of rows affected: ${result.affectedRows}`});
