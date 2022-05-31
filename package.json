@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=@babel/preset-env",
-    "start": "nodemon --exec npm run babel-node index.js",
-    "buildcss": "sass --style=compressed resources/scss/:views/public/css/",
-    "buildjs": "uglifyjs-folder resources/js/ -eo views/public/js/",
-    "buildimg": "copyfiles -u 2 resources/img/*.* views/public/img/",
-    "build": "npm run buildcss & npm run buildjs & npm run buildimg"
+    "start": "nodemon --exec npm run babel-node index.js"
   },
   "repository": {
     "type": "git",
